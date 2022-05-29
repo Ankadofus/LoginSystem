@@ -4,7 +4,7 @@ data.
 (Current implementation resets pre-existing data upon execution - make changes according to desired implementation in application.properties)
 
 This system allows users to create a new account (unless they already possess an enabled account affiliated with their email or their email input is invalid).
-It also sends a confirmation link to the email address they seek to make an account with, that expires after 15 min (it can be resent if it expired).
+It also sends a confirmation link to the email address they seek to make an account with, that expires after 15 min (it can be resent if it expired). Make sure to enter a valid email in EmailConfig in order to have an email to sent the email confirmation from.
 
 The purpose of this repo is to serve as an easy access to such a system for future use if a similar concept needs to be implemented in a future project (to facilitate 
 multiple usages in different contexts).
