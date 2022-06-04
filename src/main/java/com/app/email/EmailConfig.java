@@ -17,8 +17,8 @@ public class EmailConfig {
 		mailSender.setPort(465);
 		
 		//fill these in with a valid email that'll serve as the sender
-		mailSender.setUsername("A valid email");
-		mailSender.setPassword("the valid email's password");
+		mailSender.setUsername("");
+		mailSender.setPassword("");
 		
 		Properties props = mailSender.getJavaMailProperties();
 		props.put("mail.transport.protocol", "smtp");

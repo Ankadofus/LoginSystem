@@ -27,23 +27,31 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
         	.csrf().disable()
-            .authorizeHttpRequests()
-            	.antMatchers("/api/v*/registration/**")
+            .authorizeRequests()
+            	.antMatchers("/", "/login", "/home","/registration")
             	.permitAll()
             	.anyRequest()
             	.authenticated().and()
-            	.formLogin();
+            .formLogin()
+            	.loginPage("/login")
+            	.usernameParameter("email")
+            	.passwordParameter("password")
+            	.defaultSuccessUrl("/home")
+            	.failureForwardUrl("/login")
+            	.and()
+            .logout()
+            	.permitAll();
         
         return http.build();
     }
 
-    
+   
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-    	
+    	auth.authenticationProvider(daoAuthenticationProvider());
     }
     
     @Bean
-    public DaoAuthenticationProvider daoAutenticationProvider() {
+    public DaoAuthenticationProvider daoAuthenticationProvider() {
     	DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
     	provider.setPasswordEncoder(passwordEncoder);
     	provider.setUserDetailsService(userService);

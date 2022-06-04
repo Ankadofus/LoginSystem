@@ -45,51 +45,51 @@ public class ConfirmationToken {
 		this.user = user;
 	}
 
-	public final Long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public final void setId(Long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public final String getToken() {
+	public String getToken() {
 		return token;
 	}
 
-	public final void setToken(String token) {
+	public void setToken(String token) {
 		this.token = token;
 	}
 
-	public final LocalDateTime getCreatedAt() {
+	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
 
-	public final void setCreatedAt(LocalDateTime createdAt) {
+	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
 
-	public final LocalDateTime getExpiresAt() {
+	public LocalDateTime getExpiresAt() {
 		return expiresAt;
 	}
 
-	public final void setExpiresAt(LocalDateTime expiredAt) {
+	public void setExpiresAt(LocalDateTime expiredAt) {
 		this.expiresAt = expiredAt;
 	}
 
-	public final LocalDateTime getComfirmedAt() {
+	public LocalDateTime getComfirmedAt() {
 		return confirmedAt;
 	}
 
-	public final void setComfirmedAt(LocalDateTime comfirmedAt) {
+	public void setComfirmedAt(LocalDateTime comfirmedAt) {
 		this.confirmedAt = comfirmedAt;
 	}
 
-	public final User getUser() {
+	public User getUser() {
 		return user;
 	}
 
-	public final void setUser(User user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 	

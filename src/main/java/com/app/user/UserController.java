@@ -9,15 +9,32 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class UserController {
 	
+	UserRepository userRepo;
+	UserService userService;
+	
+	public UserController(UserRepository userRepo, UserService userService) {
+		this.userRepo = userRepo;
+		this.userService = userService;
+	}
+	
 	@GetMapping("/")
 	public String login(Model model) {
-		User user=new User();
-		model.addAttribute("user", user);
+		model.addAttribute("user", new User());
 		return "login";
 	}
 	
-	@PostMapping("/userLogin")
-	public String loginUser(@ModelAttribute("user") User user) {
-		return "home";
+	@PostMapping("/login")
+	public String loginUser(@ModelAttribute("user") User user, Model model) {
+		if(userRepo.findByEmail(user.getEmail()).isPresent()) {			
+			User savedUser = userRepo.findUserByEmail(user.getEmail());
+			
+			if(!savedUser.isEnabled()) {
+				model.addAttribute("notConfirmed", true);
+				return "login";
+			}
+		} 
+		model.addAttribute("wrongCredentials", true);
+		
+		return "login";
 	}
 }

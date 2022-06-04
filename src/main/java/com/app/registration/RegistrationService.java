@@ -29,12 +29,7 @@ public class RegistrationService {
 		this.emailSender = emailSender;
 	}
 	
-	public String register(RegistrationRequest request) {
-		Boolean isValidEmail= emailValidator.test(request.getEmail());
-		
-		if(!isValidEmail) {
-			throw new IllegalStateException("Email not valid!");
-		}
+	public String register(RegistrationRequest request) {		
 		String token = userService.signUpUser(new User(
 						request.getFirstname(), 
 						request.getLastname(),
@@ -43,9 +38,55 @@ public class RegistrationService {
 						request.getPassword(),
 						UserRole.User));
 		
-		String link = "http://localhost:3307/api/v1/registration/confirm?token=" + token;
+		String link = "http://localhost:3307/confirm?token=" + token;
 		emailSender.send(request.getEmail(), buildEmail(request.getFirstname(), link));
 		return token;
+	}
+	
+	public String emailInUse(String email) {
+		return userService.emailInUse(email);
+	}
+	
+	public Boolean emailIsValid(String email) {
+		if(emailValidator.test(email)) {
+			return true;
+		}		
+		return false;
+	}
+	
+	public Boolean isPasswordValid(String password) {
+		if(password.length() <= 60) {
+			return true;
+		}
+		return false;
+	}
+	
+	public Boolean isFirstNameValid(String firstName) {
+		if(firstName.length() <= 20) {
+			return true;
+		}
+		return false;
+	}
+	
+	public Boolean isLastNameValid(String lastName) {
+		if(lastName.length() <= 25) {
+			return true;
+		}
+		return false;
+	}
+	
+	public Boolean isUserNameValid(String username) {
+		if(username.length() <= 20) {
+			return true;
+		}
+		return false;
+	}
+	
+	public Boolean emailIsValidLength(String username) {
+		if(username.length() <= 40) {
+			return true;
+		}
+		return false;
 	}
 	
 	@Transactional

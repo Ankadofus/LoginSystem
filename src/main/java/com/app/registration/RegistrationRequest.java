@@ -10,8 +10,6 @@ public class RegistrationRequest {
 	private final String email;
 	private final String password;
 	
-	
-	
 	public RegistrationRequest(String firstname, String lastname, String username, String email, String password) {
 		this.firstName = firstname;
 		this.lastName = lastname;

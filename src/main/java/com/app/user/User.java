@@ -53,6 +53,7 @@ public class User implements UserDetails{
 	@Column(name = "username", nullable = false, length = 20)
 	private String username;
 
+	//Constructors
 	public User() {}
 
 	public User(String firstName, String lastName, String username, String email, String password, 
@@ -65,6 +66,7 @@ public class User implements UserDetails{
 		this.UserRole = userRole;
 	}
 	
+	//Getters and Setters
 	public Long getId() {
 		return id;
 	}
